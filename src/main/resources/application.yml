@@ -39,4 +39,4 @@ spring:
 # Mybatis配置
 mybatis:
   configLocation: classpath:mybatis.xml
-  mapper-locations: classpath*:net/chenlin/dp/**/mapper/*.xml
+  mapper-locations: classpath*:net/esm/**/mapper/*.xml

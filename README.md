@@ -1,12 +1,5 @@
-# dp-BOOT
+# esm
 基于SpringBoot框架的权限管理系统，支持操作权限和数据权限，后端采用SpringBoot、Mybatis、Shiro，前端采用adminLTE、vue.js、bootstrap-table、tree-grid、layer，对前后端进行封装，可快速完成CRUD的开发，基于项目结构通过代码生成器可生成前端后台部分代码，更加方便地进行二次开发。项目采用Maven分模块构建，方便扩展自定义模块。
-
-### 传送门
-- dp-LTE：[https://gitee.com/dp_group/dp-security/](https://gitee.com/dp_group/dp-security/)
-- dp-PRO：[https://gitee.com/dp_group/dp-pro](https://gitee.com/dp_group/dp-pro)
-- dp-GEN：[https://gitee.com/dp_group/dp-generator](https://gitee.com/dp_group/dp-generator)
-- dp-BOOT：[https://gitee.com/dp_group/dp-boot](https://gitee.com/dp_group/dp-BOOT)
-- 项目文档：[http://dp-dev.mydoc.io/](http://dp-dev.mydoc.io/)
 
 ### 项目介绍
 - 一个轻量级的Java快速开发框架，基于SpringBoot开发，能快速开发项目并交付
@@ -24,8 +17,8 @@
 - 调用/rest/authStatus异步校验token状态
 - token所有合法性参数在服务端管理，可自行扩展校验，比如时间戳，限制ip，UA检测等策略
 ### 项目拓展
-- [基于系统参数管理实现动态select控件](https://my.oschina.net/zhouchenglin/blog/1615653)
-- [基于ajaxfileupload.js实现文件上传](https://my.oschina.net/zhouchenglin/blog/1615214)
+- [基于系统参数管理实现动态select控件](https://my.oschina.net/zhouglin/blog/1615653)
+- [基于ajaxfileupload.js实现文件上传](https://my.oschina.net/zhouglin/blog/1615214)
 ### 技术方案
 - 核心框架：SpringBoot
 - ORM框架：Mybatis
@@ -43,12 +36,6 @@
 - 富文本组件：wangEditor
 - 表单校验：validator
 
-### 交流反馈
-- 作者主页：[http://www.chenlintech.com/](http://www.chenlintech.com/)
-- 交流QQ群：【已满】，钉钉群号：23119937
-- 如果对项目感兴趣，请Watch、Star项目，后期会不定时发布更新
-<img src="https://images.gitee.com/uploads/images/2020/0104/001947_7d890e6c_562480.png" width = "200" height = "200"/>
-
 ### 命名规范（参考阿里巴巴Java开发手册）
 -  获取单个对象的方法用 get 做前缀
 -  获取多个对象的方法用 list 做前缀
@@ -63,10 +50,3 @@
 ### 项目演示
 - 演示地址：请下载源代码本地启服
 - 账号密码：admin / 1
-
-### 运行效果
-![image](https://images.gitee.com/uploads/images/2020/0104/001958_af5ee8a8_562480.png)
-![image](https://images.gitee.com/uploads/images/2020/0104/002001_b4c8e545_562480.png)
-![image](https://images.gitee.com/uploads/images/2020/0104/002006_9c48df53_562480.png)
-![image](https://images.gitee.com/uploads/images/2020/0104/002011_772c24ea_562480.png)
-![image](https://images.gitee.com/uploads/images/2020/0104/002015_e16bb4ae_562480.png)

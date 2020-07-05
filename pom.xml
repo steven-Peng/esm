@@ -3,16 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.chenlin.dp</groupId>
-    <artifactId>dp</artifactId>
+    <groupId>net.esm</groupId>
+    <artifactId>esm-boot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
     <!-- 生成war时放开注释，以及第58行注释
     <packaging>war</packaging>
     -->
 
-    <name>dp-lte-boot</name>
-    <description>dp-lte开发框架SpringBoot版本</description>
+    <name>esm-boot</name>
+    <description>esm-boot开发框架SpringBoot版本</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -45,6 +45,7 @@
         <servlet-version>3.1.0</servlet-version>
         <kaptcha-version>2.3.2</kaptcha-version>
         <jwt-version>0.9.0</jwt-version>
+        <netty-version>4.1.36.Final</netty-version>
     </properties>
 
     <dependencies>
@@ -84,6 +85,16 @@
                 </exclusion>
             </exclusions>
             -->
+        </dependency>
+        <!--Netty-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
             <groupId>com.ibeetl</groupId>
@@ -223,15 +234,9 @@
 
     <profiles>
         <profile>
-            <id>sit</id>
+            <id>dev</id>
             <properties>
-                <spring.active>sit</spring.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>pre</id>
-            <properties>
-                <spring.active>pre</spring.active>
+                <spring.active>dev</spring.active>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>

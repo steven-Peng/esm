@@ -3,7 +3,7 @@ package ${package}.modules.${module}.dao;
 import org.apache.ibatis.annotations.Mapper;
 
 import ${package}.modules.${module}.entity.${className}Entity;
-import net.chenlin.dp.modules.sys.dao.BaseMapper;
+import BaseMapper;
 
 /**
  * ${comments}

@@ -1,6 +1,6 @@
 /**
  * Bootstrap Table Ukrainian translation
- * Author: Vitaliy Timchenko <vitaliy.timchenko@gmail.com>
+ * Author: Vitaliy Timko <vitaliy.timchenko@gmail.com>
  */
  (function ($) {
     'use strict';

@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.chenlin.dp.common.annotation.SysLog;
-import net.chenlin.dp.modules.sys.controller.AbstractController;
-import net.chenlin.dp.common.entity.Page;
-import net.chenlin.dp.common.entity.R;
+import SysLog;
+import AbstractController;
+import Page;
+import R;
 import ${package}.modules.${module}.entity.${className}Entity;
 import ${package}.modules.${module}.service.${className}Service;
 
