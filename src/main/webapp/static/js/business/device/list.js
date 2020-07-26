@@ -26,7 +26,7 @@ function getGrid() {
             {field : "number", title : "设备编码", width : "200px", align : "center"},
             {field : "name", title : "设备名称", width : "200px",align : "center"},
             {field : "sensorData", title : "传感器数据", width : "500px",align : "center"},
-    		{field : "gmtModified", title : "最新时间", align : "center", width : "200px"},
+    		{field : "gmtUpload", title : "最新时间", align : "center", width : "200px"},
             {field : "gmtCreate", title : "创建时间", align : "center", width : "200px"},
             //{field : "isDelete", title : "是否删除 0:否，1:是", width : "100px"},
             {

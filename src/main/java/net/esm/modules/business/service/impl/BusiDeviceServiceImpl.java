@@ -68,6 +68,10 @@ public class BusiDeviceServiceImpl implements BusiDeviceService {
 		if (device != null){
 			return CommonUtils.msg("该设备已存在");
 		}
+		busiDevice.setStatus(Constant.STATUS_LOST_CONNECTION);
+		if (busiDevice.getEnable() == null){
+			busiDevice.setEnable(Constant.ENABLE_NORMAL);
+		}
 		int count = busiDeviceMapper.save(busiDevice);
 		return CommonUtils.msg(count);
 	}
@@ -91,6 +95,7 @@ public class BusiDeviceServiceImpl implements BusiDeviceService {
 			busiDeviceMapper.save(busiDevice);
 		}else {
 			device.setGmtModified(new Date());
+			device.setStatus(Constant.STATUS_IN_CONNECTION);
 			busiDeviceMapper.update(device);
 		}
 

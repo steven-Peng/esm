@@ -33,12 +33,14 @@
 			`number`, 
 			`name`, 
 			`enable`,
+			`status`,
 			`gmt_modified`
 		)
 		VALUES (
 			#{number}, 
 			#{name}, 
 			#{enable},
+			#{status},
 			#{gmtModified}
 		)
 	</insert>
