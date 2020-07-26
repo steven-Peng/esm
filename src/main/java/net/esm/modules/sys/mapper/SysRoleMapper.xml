@@ -15,32 +15,32 @@
 	
 	<select id="listForPage" resultType="net.esm.modules.sys.entity.SysRoleEntity">
 		SELECT
-			r.role_id,
-			r.org_id,
+			result.role_id,
+			result.org_id,
 			(
 				SELECT 
 					name 
 				FROM 
 					sys_org o 
 				WHERE 
-					o.org_id = r.org_id
+					o.org_id = result.org_id
 			) AS orgName,
-			r.role_name,
-			r.role_sign,
-			r.remark,
-			r.gmt_create
+			result.role_name,
+			result.role_sign,
+			result.remark,
+			result.gmt_create
 		FROM
-			sys_role r
+			sys_role result
 		<where>
 			<if test="userIdCreate != null">
-				and r.user_id_create = #{userIdCreate} 
+				and result.user_id_create = #{userIdCreate}
 			</if>
 			<if test="roleName != null and roleName.trim() != ''">
-				AND r.role_name LIKE concat('%',#{roleName},'%') 
+				AND result.role_name LIKE concat('%',#{roleName},'%')
 			</if>
 		</where>
 		ORDER BY
-			r.role_id ASC
+			result.role_id ASC
 	</select>
 	
 	<insert id="save">
@@ -64,23 +64,23 @@
 	
 	<select id="getObjectById" resultType="net.esm.modules.sys.entity.SysRoleEntity">
 		SELECT
-			r.role_id,
-			r.org_id,
+			result.role_id,
+			result.org_id,
 			(
 				SELECT 
 					name 
 				FROM 
 					sys_org o 
 				WHERE 
-					o.org_id = r.org_id
+					o.org_id = result.org_id
 			) AS orgName,
-			r.role_name,
-			r.role_sign,
-			r.remark
+			result.role_name,
+			result.role_sign,
+			result.remark
 		FROM
-			sys_role r
+			sys_role result
 		WHERE
-			r.role_id = #{roleId}
+			result.role_id = #{roleId}
 	</select>
 	
 	<update id="update">
@@ -109,10 +109,10 @@
 	
 	<select id="listUserRoles" parameterType="long" resultType="string">
 		SELECT DISTINCT
-			r.role_sign
+			result.role_sign
 		FROM
 			sys_user_role ur
-		LEFT JOIN sys_role r ON ur.role_id = r.role_id
+		LEFT JOIN sys_role result ON ur.role_id = result.role_id
 		LEFT JOIN sys_user u ON ur.user_id = u.user_id
 		WHERE
 			u.user_id = #{role}

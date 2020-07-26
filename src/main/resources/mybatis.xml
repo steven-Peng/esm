@@ -62,7 +62,7 @@
     </plugins>
 
     <mappers>
-        <package name="net.esm.dp.modules.*.dao"/>
+        <package name="net.esm.modules.*.dao"/>
     </mappers>
     
 </configuration>

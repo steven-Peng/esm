@@ -34,9 +34,9 @@
                     contentType: 'application/json',
                     url: '../../sys/org/list?_' + $.now(),
                     data: null,
-                    success: function (r) {
+                    success: function (result) {
                         ztree = $.fn.zTree
-                            .init($("#orgTree"), setting, r);
+                            .init($("#orgTree"), setting, result);
                         ztree.expandAll(true);
                     },
                     dataType: 'json'

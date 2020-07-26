@@ -1,6 +1,6 @@
 package net.esm.modules.sys.service;
 
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.modules.sys.entity.SysAreaEntity;
 
 import java.util.List;
@@ -24,34 +24,34 @@ public interface SysAreaService {
 	 * @param params
 	 * @return
 	 */
-	R listAreaByParentCode(Map<String, Object> params);
+	Result listAreaByParentCode(Map<String, Object> params);
 
 	/**
 	 * 新增区域
 	 * @param area
 	 * @return
 	 */
-	R saveArea(SysAreaEntity area);
+	Result saveArea(SysAreaEntity area);
 
 	/**
 	 * 根据id查询区域
 	 * @param areaId
 	 * @return
 	 */
-	R getAreaById(Long areaId);
+	Result getAreaById(Long areaId);
 
 	/**
 	 * 修改区域
 	 * @param area
 	 * @return
 	 */
-	R updateArea(SysAreaEntity area);
+	Result updateArea(SysAreaEntity area);
 
 	/**
 	 * 批量删除区域
 	 * @param id
 	 * @return
 	 */
-	R batchRemoveArea(Long[] id);
+	Result batchRemoveArea(Long[] id);
 	
 }

@@ -1,8 +1,10 @@
 package net.esm;
 
 import net.esm.common.support.config.NettyConfig;
+import net.esm.common.support.properties.GlobalProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,7 +33,7 @@ public class EsmApplication extends SpringBootServletInitializer {
         LOGGER.info("The Dp application has been started successfully!");
 
         // 启动Netty Server，监听端口
-        NettyConfig.start(new InetSocketAddress("127.0.0.1", 8090));
+        NettyConfig.start(new InetSocketAddress("0.0.0.0", 8090));
     }
 
     /**

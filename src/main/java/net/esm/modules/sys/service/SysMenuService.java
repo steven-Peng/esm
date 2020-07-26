@@ -1,6 +1,6 @@
 package net.esm.modules.sys.service;
 
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.modules.sys.entity.SysMenuEntity;
 
 import java.util.List;
@@ -17,7 +17,7 @@ public interface SysMenuService {
 	 * @param userId
 	 * @return
 	 */
-	R listUserMenu(Long userId);
+	Result listUserMenu(Long userId);
 
 	/**
 	 * 查询菜单列表
@@ -30,34 +30,34 @@ public interface SysMenuService {
 	 * 查询目录和菜单
 	 * @return
 	 */
-	R listNotButton();
+	Result listNotButton();
 
 	/**
 	 * 新增菜单
 	 * @param menu
 	 * @return
 	 */
-	R saveMenu(SysMenuEntity menu);
+	Result saveMenu(SysMenuEntity menu);
 
 	/**
 	 * 根据id查询菜单
 	 * @param id
 	 * @return
 	 */
-	R getMenuById(Long id);
+	Result getMenuById(Long id);
 
 	/**
 	 * 修改菜单
 	 * @param menu
 	 * @return
 	 */
-	R updateMenu(SysMenuEntity menu);
+	Result updateMenu(SysMenuEntity menu);
 
 	/**
 	 * 删除菜单
 	 * @param id
 	 * @return
 	 */
-	R batchRemove(Long[] id);
+	Result batchRemove(Long[] id);
 
 }

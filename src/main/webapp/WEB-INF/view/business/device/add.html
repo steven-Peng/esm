@@ -1,0 +1,34 @@
+@layout("../../system/layout.html", {title: "设备表"}){
+<table class="form" id="form">
+    <tr>
+        <td class="formTitle">设备编码<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="设备编码" v-model="busiDevice.number" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">设备名称<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="设备名称" v-model="busiDevice.name" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">是否可用<font face="宋体">*</font></td>
+        <td class="formValue" placeholder="是否可用" isvalid="yes" checkexpession="NotNull">
+            <label class="radio-inline">
+                <input type="radio" name="status" value="0" v-model="busiDevice.enable"/> 禁用
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="status" value="1" v-model="busiDevice.enable"/> 正常
+            </label>
+        </td>
+    </tr>
+<!--    <tr>-->
+<!--        <td class="formTitle">状态 0:掉线，1:在线<font face="宋体">*</font></td>-->
+<!--        <td class="formValue">-->
+<!--            <input type="text" class="form-control" placeholder="状态 0:掉线，1:在线" v-model="busiDevice.status" isvalid="yes" checkexpession="NotNull">-->
+<!--        </td>-->
+<!--    </tr>-->
+</table>
+<script src="${ctxPath}/static/js/business/device/add.js"></script>
+@}

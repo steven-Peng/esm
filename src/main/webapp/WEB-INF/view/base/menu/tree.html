@@ -20,9 +20,9 @@
         el: '#dpLTE',
         methods: {
             getMenu: function (menuId) {
-                $.get('../../sys/menu/select', function (r) {
+                $.get('../../sys/menu/select', function (result) {
                     ztree = $.fn.zTree
-                        .init($("#menuTree"), setting, r.rows);
+                        .init($("#menuTree"), setting, result.rows);
                     var node = ztree.getNodeByParam("menuId", top.layerForm.vm.menu.parentId);
                     ztree.selectNode(node);
                     top.layerForm.vm.menu.parentName = node.name;

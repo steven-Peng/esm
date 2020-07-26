@@ -1,6 +1,8 @@
 package net.esm.modules.sys.netty;
 
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
@@ -16,6 +18,7 @@ public class NettyServerChannelInitializer extends ChannelInitializer<SocketChan
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NettyServerChannelInitializer.class);
 
+	EventLoopGroup busiGroup = new NioEventLoopGroup(50);
 	@Override
 	protected void initChannel(SocketChannel socketChannel) throws Exception {
 		//添加编解码

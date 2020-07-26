@@ -3,7 +3,7 @@ package net.esm.modules.sys.controller;
 import java.util.Map;
 
 import net.esm.common.entity.Page;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,7 +41,7 @@ public class QuartzJobLogController {
 	 */
 	@SysLog("删除定时任务日志")
 	@RequestMapping("/remove")
-	public R batchRemove(@RequestBody Long[] id) {
+	public Result batchRemove(@RequestBody Long[] id) {
 		return quartzJobLogService.batchRemove(id);
 	}
 	
@@ -51,7 +51,7 @@ public class QuartzJobLogController {
 	 */
 	@SysLog("清空定时任务日志")
 	@RequestMapping("/clear")
-	public R batchRemoveAll() {
+	public Result batchRemoveAll() {
 		return quartzJobLogService.batchRemoveAll();
 	}
 	

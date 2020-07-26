@@ -1,7 +1,7 @@
 package net.esm.modules.sys.service;
 
 import net.esm.common.entity.Page;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.modules.sys.entity.SysRoleEntity;
 
 import java.util.List;
@@ -25,28 +25,28 @@ public interface SysRoleService {
 	 * @param role
 	 * @return
 	 */
-	R saveRole(SysRoleEntity role);
+	Result saveRole(SysRoleEntity role);
 
 	/**
 	 * 根据id查询角色
 	 * @param id
 	 * @return
 	 */
-	R getRoleById(Long id);
+	Result getRoleById(Long id);
 
 	/**
 	 * 修改角色
 	 * @param role
 	 * @return
 	 */
-	R updateRole(SysRoleEntity role);
+	Result updateRole(SysRoleEntity role);
 
 	/**
 	 * 删除角色
 	 * @param id
 	 * @return
 	 */
-	R batchRemove(Long[] id);
+	Result batchRemove(Long[] id);
 
 	/**
 	 * 所有角色集合：用户角色选择数据源
@@ -59,13 +59,13 @@ public interface SysRoleService {
 	 * @param role
 	 * @return
 	 */
-	R updateRoleOptAuthorization(SysRoleEntity role);
+	Result updateRoleOptAuthorization(SysRoleEntity role);
 
 	/**
 	 * 数据权限
 	 * @param role
 	 * @return
 	 */
-	R updateRoleDataAuthorization(SysRoleEntity role);
+	Result updateRoleDataAuthorization(SysRoleEntity role);
 	
 }

@@ -3,7 +3,7 @@ package net.esm.modules.sys.service.impl;
 import net.esm.common.constant.MsgConstant;
 import net.esm.common.constant.SystemConstant;
 import net.esm.common.entity.Query;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.common.utils.CommonUtils;
 import net.esm.modules.sys.dao.SysMenuMapper;
 import net.esm.modules.sys.dao.SysRoleMenuMapper;
@@ -46,9 +46,9 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return
 	 */
 	@Override
-	public R listUserMenu(Long userId) {
+	public Result listUserMenu(Long userId) {
 		List<Long> menuIdList = sysUserMapper.listAllMenuId(userId);
-		return R.ok().put("menuList", getAllMenuList(menuIdList));
+		return Result.ok().put("menuList", getAllMenuList(menuIdList));
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return
 	 */
 	@Override
-	public R listNotButton() {
+	public Result listNotButton() {
 		List<SysMenuEntity> menuList = sysMenuMapper.listNotButton();
 		SysMenuEntity root = new SysMenuEntity();
 		root.setMenuId(0L);
@@ -139,7 +139,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return
 	 */
 	@Override
-	public R saveMenu(SysMenuEntity menu) {
+	public Result saveMenu(SysMenuEntity menu) {
 		int count = sysMenuMapper.save(menu);
 		// 刷新权限链
 		if (count > 0) {
@@ -154,7 +154,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return
 	 */
 	@Override
-	public R getMenuById(Long id) {
+	public Result getMenuById(Long id) {
 		SysMenuEntity menu = sysMenuMapper.getObjectById(id);
 		return CommonUtils.msg(menu);
 	}
@@ -165,7 +165,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return
 	 */
 	@Override
-	public R updateMenu(SysMenuEntity menu) {
+	public Result updateMenu(SysMenuEntity menu) {
 		int count = sysMenuMapper.update(menu);
 		// 刷新权限链
 		if (count > 0) {
@@ -180,10 +180,10 @@ public class SysMenuServiceImpl implements SysMenuService {
 	 * @return
 	 */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Result batchRemove(Long[] id) {
 		boolean children = this.hasChildren(id);
 		if(children) {
-			return R.error(MsgConstant.MSG_HAS_CHILD);
+			return Result.error(MsgConstant.MSG_HAS_CHILD);
 		}
 		int count = sysMenuMapper.batchRemove(id);
 		sysRoleMenuMapper.batchRemoveByMenuId(id);

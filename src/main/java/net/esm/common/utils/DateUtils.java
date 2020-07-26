@@ -1,5 +1,8 @@
 package net.esm.common.utils;
 
+import org.apache.commons.lang.StringUtils;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,6 +32,18 @@ public class DateUtils {
 		if (date != null) {
 			SimpleDateFormat df = new SimpleDateFormat(pattern);
 			return df.format(date);
+		}
+		return null;
+	}
+
+	public static Date parse(String dateStr, String pattern) {
+		if (StringUtils.isNotBlank(dateStr)) {
+			SimpleDateFormat df = new SimpleDateFormat(pattern);
+			try {
+				return df.parse(dateStr);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
 		return null;
 	}

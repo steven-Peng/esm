@@ -2,7 +2,7 @@ package net.esm.modules.sys.service.impl;
 
 import net.esm.common.entity.Page;
 import net.esm.common.entity.Query;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.common.utils.CommonUtils;
 import net.esm.modules.sys.dao.QuartzJobLogMapper;
 import net.esm.modules.sys.entity.QuartzJobLogEntity;
@@ -41,7 +41,7 @@ public class QuartzJobLogServiceImpl implements QuartzJobLogService {
 	 * @return
 	 */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Result batchRemove(Long[] id) {
 		int count = quartzJobLogMapper.batchRemove(id);
 		return CommonUtils.msg(id, count);
 	}
@@ -51,7 +51,7 @@ public class QuartzJobLogServiceImpl implements QuartzJobLogService {
 	 * @return
 	 */
 	@Override
-	public R batchRemoveAll() {
+	public Result batchRemoveAll() {
 		int count = quartzJobLogMapper.batchRemoveAll();
 		return CommonUtils.msg(count);
 	}

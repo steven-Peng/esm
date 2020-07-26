@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import net.esm.common.constant.RestApiConstant;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.common.utils.JwtUtils;
 import net.esm.common.utils.MD5Utils;
 import net.esm.common.utils.TokenUtils;
@@ -41,8 +41,8 @@ public class RestAuthController extends AbstractController {
     @ApiOperation(value = "登录")
     @ApiImplicitParam(name = "token", value = "授权码")
     @RequestMapping(value = RestApiConstant.AUTH_REQUEST, method = {RequestMethod.GET, RequestMethod.POST})
-    public R auth(@ApiParam(name = "username", value = "用户名") @RequestParam String username,
-                  @ApiParam(name = "password", value = "密码") @RequestParam String password) {
+    public Result auth(@ApiParam(name = "username", value = "用户名") @RequestParam String username,
+                       @ApiParam(name = "password", value = "密码") @RequestParam String password) {
         // 用户名为空
         if (StringUtils.isBlank(username.trim())) {
             return RestApiConstant.TokenErrorEnum.USER_USERNAME_NULL.getResp();
@@ -71,7 +71,7 @@ public class RestAuthController extends AbstractController {
                 String.valueOf(sysUserEntity.getUserId()), randomKey);
         int count = sysUserService.saveOrUpdateToken(sysUserEntity.getUserId(), randomKey);
         if (count > 0) {
-            R success = RestApiConstant.TokenErrorEnum.TOKEN_ENABLE.getResp();
+            Result success = RestApiConstant.TokenErrorEnum.TOKEN_ENABLE.getResp();
             success.put(RestApiConstant.AUTH_TOKEN, token);
             return success;
         }
@@ -84,7 +84,7 @@ public class RestAuthController extends AbstractController {
      */
     @ApiOperation(value = "校验token是否可用")
     @RequestMapping(value = RestApiConstant.AUTH_CHECK, method = {RequestMethod.GET, RequestMethod.POST})
-    public R authStatus(@ApiParam(name = "token", value = "授权码") @RequestParam String token) {
+    public Result authStatus(@ApiParam(name = "token", value = "授权码") @RequestParam String token) {
 
         // token为空
         if (StringUtils.isBlank(token.trim())) {

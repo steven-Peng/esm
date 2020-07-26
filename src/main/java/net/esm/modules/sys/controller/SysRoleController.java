@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.esm.common.entity.Page;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,7 +55,7 @@ public class SysRoleController extends AbstractController {
 	 */
 	@SysLog("新增角色")
 	@RequestMapping("/save")
-	public R saveRole(@RequestBody SysRoleEntity role) {
+	public Result saveRole(@RequestBody SysRoleEntity role) {
 		role.setUserIdCreate(getUserId());
 		return sysRoleService.saveRole(role);
 	}
@@ -66,7 +66,7 @@ public class SysRoleController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping("/info")
-	public R getRoleById(@RequestBody Long id) {
+	public Result getRoleById(@RequestBody Long id) {
 		return sysRoleService.getRoleById(id);
 	}
 	
@@ -77,7 +77,7 @@ public class SysRoleController extends AbstractController {
 	 */
 	@SysLog("修改角色")
 	@RequestMapping("/update")
-	public R updateRole(@RequestBody SysRoleEntity role) {
+	public Result updateRole(@RequestBody SysRoleEntity role) {
 		return sysRoleService.updateRole(role);
 	}
 	
@@ -88,7 +88,7 @@ public class SysRoleController extends AbstractController {
 	 */
 	@SysLog("删除角色")
 	@RequestMapping("/remove")
-	public R batchRemove(@RequestBody Long[] id) {
+	public Result batchRemove(@RequestBody Long[] id) {
 		return sysRoleService.batchRemove(id);
 	}
 	
@@ -99,7 +99,7 @@ public class SysRoleController extends AbstractController {
 	 */
 	@SysLog("操作权限")
 	@RequestMapping("/authorize/opt")
-	public R updateRoleOptAuthorization(@RequestBody SysRoleEntity role) {
+	public Result updateRoleOptAuthorization(@RequestBody SysRoleEntity role) {
 		return sysRoleService.updateRoleOptAuthorization(role);
 	}
 	
@@ -110,7 +110,7 @@ public class SysRoleController extends AbstractController {
 	 */
 	@SysLog("数据权限")
 	@RequestMapping("/authorize/data")
-	public R updateRoleDataAuthorization(@RequestBody SysRoleEntity role) {
+	public Result updateRoleDataAuthorization(@RequestBody SysRoleEntity role) {
 		return sysRoleService.updateRoleDataAuthorization(role);
 	}
 	

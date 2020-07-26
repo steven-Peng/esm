@@ -4,13 +4,13 @@ spring:
     driverClassName: com.mysql.jdbc.Driver
     druid:
       master-data-source:
-        url: jdbc:mysql://127.0.0.1:3306/dp-lte-boot?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+        url: jdbc:mysql://47.108.132.5:3306/esm-boot?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
-        password: root
+        password: esm123456
       slave-data-source:
-        url: jdbc:mysql://127.0.0.1:3306/dp-lte-boot?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+        url: jdbc:mysql://47.108.132.5:3306/esm-boot?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
         username: root
-        password: root
+        password: esm123456
       initial-size: 10
       max-active: 100
       min-idle: 10
@@ -36,3 +36,9 @@ spring:
         wall:
           config:
             multi-statement-allow: true
+
+global:
+  upload-location: /home/app/upload/ #文件上传目录
+  upload-mapping:  /home/app/upload/
+  kaptcha-enable: true #是否开启验证码，true为开启，false为关闭
+  netty-ip: 47.108.132.5

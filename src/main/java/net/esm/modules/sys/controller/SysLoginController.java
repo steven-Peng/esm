@@ -76,7 +76,7 @@ public class SysLoginController extends AbstractController {
 			UsernamePasswordToken token = new UsernamePasswordToken(username, MD5Utils.encrypt(username, password));
 			ShiroUtils.getSubject().login(token);
 			SecurityUtils.getSubject().getSession().setAttribute("sessionFlag", true);
-			return redirect("/");
+			return redirect("/#business/device/list.html");
 		} catch (UnknownAccountException | IncorrectCredentialsException | LockedAccountException e) {
 			model.addAttribute("errorMsg", e.getMessage());
 		} catch (AuthenticationException e) {

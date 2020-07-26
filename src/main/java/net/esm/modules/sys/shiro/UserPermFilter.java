@@ -1,6 +1,6 @@
 package net.esm.modules.sys.shiro;
 
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.common.utils.JSONUtils;
 import net.esm.common.utils.WebUtils;
 import org.apache.shiro.web.filter.authz.PermissionsAuthorizationFilter;
@@ -23,7 +23,7 @@ public class UserPermFilter extends PermissionsAuthorizationFilter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         if (WebUtils.isAjax(httpServletRequest)) {
             // ajax请求返回json
-            R error = R.error("没有权限，请联系管理员授权");
+            Result error = Result.error("没有权限，请联系管理员授权");
             WebUtils.write(httpServletResponse, JSONUtils.beanToJson(error));
         } else {
             // 非异步请求直接跳转权限错误页面

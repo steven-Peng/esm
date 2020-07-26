@@ -3,7 +3,7 @@ package net.esm.modules.sys.service.impl;
 import net.esm.common.constant.SystemConstant;
 import net.esm.common.entity.Page;
 import net.esm.common.entity.Query;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.common.support.properties.JwtProperties;
 import net.esm.common.utils.CommonUtils;
 import net.esm.common.utils.MD5Utils;
@@ -81,7 +81,7 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R saveUser(SysUserEntity user) {
+	public Result saveUser(SysUserEntity user) {
 		user.setPassword(MD5Utils.encrypt(user.getUsername(), user.getPassword()));
 		int count = sysUserMapper.save(user);
 		Query query = new Query();
@@ -97,7 +97,7 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R getUserById(Long userId) {
+	public Result getUserById(Long userId) {
 		SysUserEntity user = sysUserMapper.getObjectById(userId);
 		user.setRoleIdList(sysUserRoleMapper.listUserRoleId(userId));
 		return CommonUtils.msg(user);
@@ -109,7 +109,7 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R updateUser(SysUserEntity user) {
+	public Result updateUser(SysUserEntity user) {
 		int count = sysUserMapper.update(user);
 		Long userId = user.getUserId();
 		sysUserRoleMapper.remove(userId);
@@ -126,7 +126,7 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Result batchRemove(Long[] id) {
 		int count = sysUserMapper.batchRemove(id);
 		sysUserRoleMapper.batchRemoveByUserId(id);
 		return CommonUtils.msg(count);
@@ -172,7 +172,7 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R updatePswdByUser(SysUserEntity user) {
+	public Result updatePswdByUser(SysUserEntity user) {
 		String username = user.getUsername();
 		String pswd = user.getPassword();
 		String newPswd = user.getEmail();
@@ -184,7 +184,7 @@ public class SysUserServiceImpl implements SysUserService {
 		query.put("newPswd", newPswd);
 		int count = sysUserMapper.updatePswdByUser(query);
 		if(!CommonUtils.isIntThanZero(count)) {
-			return R.error("原密码错误");
+			return Result.error("原密码错误");
 		}
 		return CommonUtils.msg(count);
 	}
@@ -195,7 +195,7 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R updateUserEnable(Long[] id) {
+	public Result updateUserEnable(Long[] id) {
 		Query query = new Query();
 		query.put("status", SystemConstant.StatusType.ENABLE.getValue());
 		query.put("id", id);
@@ -209,7 +209,7 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R updateUserDisable(Long[] id) {
+	public Result updateUserDisable(Long[] id) {
 		Query query = new Query();
 		query.put("status", SystemConstant.StatusType.DISABLE.getValue());
 		query.put("id", id);
@@ -223,7 +223,7 @@ public class SysUserServiceImpl implements SysUserService {
 	 * @return
 	 */
 	@Override
-	public R updatePswd(SysUserEntity user) {
+	public Result updatePswd(SysUserEntity user) {
 		SysUserEntity currUser = sysUserMapper.getObjectById(user.getUserId());
 		user.setPassword(MD5Utils.encrypt(currUser.getUsername(), user.getPassword()));
 		int count = sysUserMapper.updatePswd(user);

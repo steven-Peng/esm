@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.esm.modules.business.dao.BusiDeviceMapper">
+	
+	<select id="listForPage" resultType="net.esm.modules.business.entity.BusiDeviceEntity">
+		SELECT
+			`id`, 
+			`number`, 
+			`name`, 
+			`enable`, 
+			`status`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`is_delete`
+		FROM
+			busi_device
+		<where>
+			is_delete = 0
+			<if test="search != null and search.trim() != ''">
+				AND (
+				number LIKE concat('%',#{search},'%')
+				OR name LIKE concat('%',#{search},'%')
+				)
+			</if>
+		</where>
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO busi_device (
+			`number`, 
+			`name`, 
+			`enable`,
+			`gmt_modified`
+		)
+		VALUES (
+			#{number}, 
+			#{name}, 
+			#{enable},
+			#{gmtModified}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.esm.modules.business.entity.BusiDeviceEntity">
+		SELECT
+			`id`, 
+			`number`, 
+			`name`, 
+			`enable`, 
+			`status`, 
+			`gmt_create`, 
+			`gmt_modified`, 
+			`is_delete`
+		FROM
+			busi_device
+		WHERE
+			id = #{id}
+	</select>
+
+	<select id="getDeviceByNumber" resultType="net.esm.modules.business.entity.BusiDeviceEntity">
+		SELECT
+		`id`,
+		`number`,
+		`name`,
+		`enable`,
+		`status`,
+		`gmt_create`,
+		`gmt_modified`,
+		`is_delete`
+		FROM
+			busi_device
+		WHERE
+			is_delete = 0 and number = #{number}
+	</select>
+
+	<select id="listForPageData" resultType="net.esm.modules.business.pojo.DeviceDataOutput">
+		SELECT
+			device.`id`,
+			device.`number`,
+			device.`name`,
+			device.`enable`,
+			device.`status`,
+			device.`gmt_create` gmtCreate,
+			device.`gmt_modified` gmtModified,
+			sd.sensor_data sensorData,
+			sd.gmt_upload gmtUpload
+		FROM
+			busi_device device
+		LEFT JOIN
+			(
+				SELECT bdsd.id,bdsd.device_number,bdsd.sensor_data,bdsd.gmt_upload
+				FROM busi_device_sensor_data bdsd WHERE id IN(
+					SELECT substring_index(GROUP_CONCAT(id ORDER BY gmt_upload DESC),',',1) id
+					FROM busi_device_sensor_data WHERE is_delete = 0
+					GROUP BY `device_number`)
+			) sd
+		ON  sd.device_number = device.number and device.is_delete = 0
+		<where>
+			<if test="search != null and search.trim() != ''">
+				AND (
+				number LIKE concat('%',#{search},'%')
+				OR name LIKE concat('%',#{search},'%')
+				)
+			</if>
+		</where>
+		ORDER BY
+		id DESC
+	</select>
+
+	<update id="update">
+		UPDATE busi_device
+	 	<set>
+			<if test="number != null">`number` = #{number}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="enable != null">`enable` = #{enable}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
+			<if test="isDelete != null">`is_delete` = #{isDelete}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			busi_device
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

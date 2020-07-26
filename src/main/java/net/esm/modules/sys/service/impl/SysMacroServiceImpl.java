@@ -2,7 +2,7 @@ package net.esm.modules.sys.service.impl;
 
 import net.esm.common.constant.MsgConstant;
 import net.esm.common.constant.SystemConstant;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.common.utils.CommonUtils;
 import net.esm.modules.sys.dao.SysMacroMapper;
 import net.esm.modules.sys.entity.SysMacroEntity;
@@ -53,7 +53,7 @@ public class SysMacroServiceImpl implements SysMacroService {
 	 * @return
 	 */
 	@Override
-	public R saveMacro(SysMacroEntity macro) {
+	public Result saveMacro(SysMacroEntity macro) {
 		int count = sysMacroMapper.save(validateMacro(macro));
 		return CommonUtils.msg(count);
 	}
@@ -64,7 +64,7 @@ public class SysMacroServiceImpl implements SysMacroService {
 	 * @return
 	 */
 	@Override
-	public R getObjectById(Long id) {
+	public Result getObjectById(Long id) {
 		SysMacroEntity macro = sysMacroMapper.getObjectById(id);
 		return CommonUtils.msg(macro);
 	}
@@ -75,7 +75,7 @@ public class SysMacroServiceImpl implements SysMacroService {
 	 * @return
 	 */
 	@Override
-	public R updateMacro(SysMacroEntity macro) {
+	public Result updateMacro(SysMacroEntity macro) {
 		int count = sysMacroMapper.update(macro);
 		return CommonUtils.msg(count);
 	}
@@ -86,7 +86,7 @@ public class SysMacroServiceImpl implements SysMacroService {
 	 * @return
 	 */
 	@Override
-	public R batchRemove(Long[] id) {
+	public Result batchRemove(Long[] id) {
 		boolean children = false;
 		for(Long typeId : id) {
 			int count = sysMacroMapper.countMacroChildren(typeId);
@@ -95,7 +95,7 @@ public class SysMacroServiceImpl implements SysMacroService {
 			}
 		}
 		if(children) {
-			return R.error(MsgConstant.MSG_HAS_CHILD);
+			return Result.error(MsgConstant.MSG_HAS_CHILD);
 		}
 		int count = sysMacroMapper.batchRemove(id);
 		return CommonUtils.msg(id, count);

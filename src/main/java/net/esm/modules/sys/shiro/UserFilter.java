@@ -1,6 +1,6 @@
 package net.esm.modules.sys.shiro;
 
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.common.utils.JSONUtils;
 import net.esm.common.utils.WebUtils;
 import org.apache.shiro.SecurityUtils;
@@ -39,7 +39,7 @@ public class UserFilter extends AccessControlFilter {
         if (WebUtils.isAjax(httpServletRequest)) {
             httpServletResponse.setHeader("sessionstatus", "timeout");
 
-            R timeout = R.error(401, "登录超时，请重新登录");
+            Result timeout = Result.error(401, "登录超时，请重新登录");
             WebUtils.write(httpServletResponse, JSONUtils.beanToJson(timeout));
             return false;
         } else {

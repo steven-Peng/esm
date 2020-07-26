@@ -1,7 +1,7 @@
 package net.esm.modules.sys.service;
 
 import net.esm.common.entity.Page;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.modules.sys.entity.QuartzJobEntity;
 
 import java.util.Map;
@@ -24,48 +24,48 @@ public interface QuartzJobService {
 	 * @param job
 	 * @return
 	 */
-	R saveQuartzJob(QuartzJobEntity job);
+	Result saveQuartzJob(QuartzJobEntity job);
 
 	/**
 	 * 根据id查询任务
 	 * @param jobId
 	 * @return
 	 */
-	R getQuartzJobById(Long jobId);
+	Result getQuartzJobById(Long jobId);
 
 	/**
 	 * 修改任务
 	 * @param job
 	 * @return
 	 */
-	R updateQuartzJob(QuartzJobEntity job);
+	Result updateQuartzJob(QuartzJobEntity job);
 
 	/**
 	 * 批量删除任务
 	 * @param id
 	 * @return
 	 */
-	R batchRemoveQuartzJob(Long[] id);
+	Result batchRemoveQuartzJob(Long[] id);
 
 	/**
 	 * 立即运行任务
 	 * @param id
 	 * @return
 	 */
-	R run(Long[] id);
+	Result run(Long[] id);
 
 	/**
 	 * 暂停任务
 	 * @param id
 	 * @return
 	 */
-	R pause(Long[] id);
+	Result pause(Long[] id);
 
 	/**
 	 * 恢复任务
 	 * @param id
 	 * @return
 	 */
-	R resume(Long[] id);
+	Result resume(Long[] id);
 	
 }

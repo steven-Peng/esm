@@ -2,7 +2,7 @@ package net.esm.modules.sys.controller;
 
 import java.util.List;
 
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +48,7 @@ public class SysOrgController extends AbstractController {
 	 */
 	@SysLog("新增机构")
 	@RequestMapping("/save")
-	public R save(@RequestBody SysOrgEntity org) {
+	public Result save(@RequestBody SysOrgEntity org) {
 		return sysOrgService.saveOrg(org);
 	}
 	
@@ -58,7 +58,7 @@ public class SysOrgController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping("/info")
-	public R info(@RequestBody Long orgId) {
+	public Result info(@RequestBody Long orgId) {
 		return sysOrgService.getOrg(orgId);
 	}
 	
@@ -69,7 +69,7 @@ public class SysOrgController extends AbstractController {
 	 */
 	@SysLog("修改机构")
 	@RequestMapping("/update")
-	public R update(@RequestBody SysOrgEntity org) {
+	public Result update(@RequestBody SysOrgEntity org) {
 		return sysOrgService.updateOrg(org);
 	}
 	
@@ -80,7 +80,7 @@ public class SysOrgController extends AbstractController {
 	 */
 	@SysLog("删除机构")
 	@RequestMapping("/remove")
-	public R batchRemove(@RequestBody Long[] id) {
+	public Result batchRemove(@RequestBody Long[] id) {
 		return sysOrgService.bactchRemoveOrg(id);
 	}
 	

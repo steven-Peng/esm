@@ -190,9 +190,9 @@
                     areaCode: params.term
                 }
             },
-            processResults: function (r) {
+            processResults: function (result) {
                 var itemList = [];
-                $.each(r, function (idx, item) {
+                $.each(result, function (idx, item) {
                     itemList.push({id: item.areaCode, text: item.name});
                 });
                 return {

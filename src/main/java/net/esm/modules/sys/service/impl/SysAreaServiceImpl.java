@@ -2,7 +2,7 @@ package net.esm.modules.sys.service.impl;
 
 import net.esm.common.constant.MsgConstant;
 import net.esm.common.entity.Query;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.common.utils.CommonUtils;
 import net.esm.modules.sys.dao.SysAreaMapper;
 import net.esm.modules.sys.entity.SysAreaEntity;
@@ -45,7 +45,7 @@ public class SysAreaServiceImpl implements SysAreaService {
 	 * @return
 	 */
 	@Override
-	public R saveArea(SysAreaEntity area) {
+	public Result saveArea(SysAreaEntity area) {
 		int count = sysAreaMapper.save(area);
 		return CommonUtils.msg(count);
 	}
@@ -56,7 +56,7 @@ public class SysAreaServiceImpl implements SysAreaService {
 	 * @return
 	 */
 	@Override
-	public R getAreaById(Long areaId) {
+	public Result getAreaById(Long areaId) {
 		SysAreaEntity area = sysAreaMapper.getObjectById(areaId);
 		area.checkParentName();
 		return CommonUtils.msg(area);
@@ -68,7 +68,7 @@ public class SysAreaServiceImpl implements SysAreaService {
 	 * @return
 	 */
 	@Override
-	public R updateArea(SysAreaEntity area) {
+	public Result updateArea(SysAreaEntity area) {
 		int count = sysAreaMapper.update(area);
 		return CommonUtils.msg(count);
 	}
@@ -79,7 +79,7 @@ public class SysAreaServiceImpl implements SysAreaService {
 	 * @return
 	 */
 	@Override
-	public R batchRemoveArea(Long[] id) {
+	public Result batchRemoveArea(Long[] id) {
 		boolean children = false;
 		for(Long typeId : id) {
 			int count = sysAreaMapper.countAreaChildren(typeId);
@@ -88,7 +88,7 @@ public class SysAreaServiceImpl implements SysAreaService {
 			}
 		}
 		if(children) {
-			return R.error(MsgConstant.MSG_HAS_CHILD);
+			return Result.error(MsgConstant.MSG_HAS_CHILD);
 		}
 		int count = sysAreaMapper.batchRemove(id);
 		return CommonUtils.msg(id, count);
@@ -100,7 +100,7 @@ public class SysAreaServiceImpl implements SysAreaService {
 	 * @return
 	 */
 	@Override
-	public R listAreaByParentCode(Map<String, Object> params) {
+	public Result listAreaByParentCode(Map<String, Object> params) {
 		Query query = new Query(params);
 		List<SysAreaEntity> areas = sysAreaMapper.listAreaByParentCode(query);
 		return CommonUtils.msg(areas);

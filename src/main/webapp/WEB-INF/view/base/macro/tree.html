@@ -20,9 +20,9 @@
         el: '#dpLTE',
         methods: {
             getMacro: function (menuId) {
-                $.get('../../sys/macro/select', function (r) {
+                $.get('../../sys/macro/select', function (result) {
                     ztree = $.fn.zTree
-                        .init($("#macroTree"), setting, r);
+                        .init($("#macroTree"), setting, result);
                     var node = ztree.getNodeByParam("macroId", top.layerForm.vm.macro.typeId);
                     ztree.selectNode(node);
                     top.layerForm.vm.macro.typeName = node.name;

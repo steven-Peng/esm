@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.esm.modules.business.dao.BusiDeviceSensorDataMapper">
+	
+	<select id="listForPage" resultType="net.esm.modules.business.entity.BusiDeviceSensorDataEntity">
+		SELECT
+			`id`, 
+			`device_number`,
+			`sensor_data`, 
+			`gmt_create`, 
+			`gmt_upload`, 
+			`is_delete`
+		FROM
+			busi_device_sensor_data
+		ORDER BY
+			id DESC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO busi_device_sensor_data (
+			`device_number`,
+			`sensor_data`, 
+			`gmt_create`, 
+			`gmt_upload`, 
+			`is_delete`
+		)
+		VALUES (
+			#{deviceNumber},
+			#{sensorData}, 
+			#{gmtCreate}, 
+			#{gmtUpload}, 
+			#{isDelete}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="net.esm.modules.business.entity.BusiDeviceSensorDataEntity">
+		SELECT
+			`id`, 
+			`device_number`,
+			`sensor_data`, 
+			`gmt_create`, 
+			`gmt_upload`, 
+			`is_delete`
+		FROM
+			busi_device_sensor_data
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE busi_device_sensor_data
+	 	<set>
+			<if test="deviceNumber != null">`device_number` = #{deviceNumber}, </if>
+			<if test="sensorData != null">`sensor_data` = #{sensorData}, </if>
+			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
+			<if test="gmtUpload != null">`gmt_upload` = #{gmtUpload}, </if>
+			<if test="isDelete != null">`is_delete` = #{isDelete}</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+			busi_device_sensor_data
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

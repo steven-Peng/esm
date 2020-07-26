@@ -2,7 +2,7 @@ package net.esm.modules.sys.controller;
 
 import java.util.List;
 
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +49,7 @@ public class SysMacroController extends AbstractController {
 	 */
 	@SysLog("新增字典")
 	@RequestMapping("/save")
-	public R save(@RequestBody SysMacroEntity macro) {
+	public Result save(@RequestBody SysMacroEntity macro) {
 		return sysMacroService.saveMacro(macro);
 	}
 	
@@ -59,7 +59,7 @@ public class SysMacroController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping("/info")
-	public R info(@RequestBody Long id) {
+	public Result info(@RequestBody Long id) {
 		return sysMacroService.getObjectById(id);
 	}
 	
@@ -70,7 +70,7 @@ public class SysMacroController extends AbstractController {
 	 */
 	@SysLog("修改字典")
 	@RequestMapping("/update")
-	public R update(@RequestBody SysMacroEntity macro) {
+	public Result update(@RequestBody SysMacroEntity macro) {
 		return sysMacroService.updateMacro(macro);
 	}
 
@@ -81,7 +81,7 @@ public class SysMacroController extends AbstractController {
 	 */
 	@SysLog("显示字典")
 	@RequestMapping("/enable")
-	public R updateStateShow(@RequestBody Long id) {
+	public Result updateStateShow(@RequestBody Long id) {
 		SysMacroEntity macro = new SysMacroEntity();
 		macro.setMacroId(id);
 		macro.setStatus(1);
@@ -95,7 +95,7 @@ public class SysMacroController extends AbstractController {
 	 */
 	@SysLog("隐藏字典")
 	@RequestMapping("/disable")
-	public R updateStateHide(@RequestBody Long id) {
+	public Result updateStateHide(@RequestBody Long id) {
 		SysMacroEntity macro = new SysMacroEntity();
 		macro.setMacroId(id);
 		macro.setStatus(0);
@@ -109,7 +109,7 @@ public class SysMacroController extends AbstractController {
 	 */
 	@SysLog("删除字典")
 	@RequestMapping("/remove")
-	public R batchRemove(@RequestBody Long[] id) {
+	public Result batchRemove(@RequestBody Long[] id) {
 		return sysMacroService.batchRemove(id);
 	}
 

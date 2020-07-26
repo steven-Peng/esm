@@ -1,7 +1,7 @@
 package net.esm.modules.sys.service;
 
 import net.esm.common.entity.Page;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.modules.sys.entity.SysUserEntity;
 import net.esm.modules.sys.entity.SysUserTokenEntity;
 
@@ -27,28 +27,28 @@ public interface SysUserService {
 	 * @param user
 	 * @return
 	 */
-	R saveUser(SysUserEntity user);
+	Result saveUser(SysUserEntity user);
 
 	/**
 	 * 根据id查询用户
 	 * @param userId
 	 * @return
 	 */
-	R getUserById(Long userId);
+	Result getUserById(Long userId);
 
 	/**
 	 * 修改用户
 	 * @param user
 	 * @return
 	 */
-	R updateUser(SysUserEntity user);
+	Result updateUser(SysUserEntity user);
 
 	/**
 	 * 删除用户
 	 * @param id
 	 * @return
 	 */
-	R batchRemove(Long[] id);
+	Result batchRemove(Long[] id);
 
 	/**
 	 * 查询用户权限集合
@@ -69,28 +69,28 @@ public interface SysUserService {
 	 * @param user
 	 * @return
 	 */
-	R updatePswdByUser(SysUserEntity user);
+	Result updatePswdByUser(SysUserEntity user);
 
 	/**
 	 * 启用用户
 	 * @param id
 	 * @return
 	 */
-	R updateUserEnable(Long[] id);
+	Result updateUserEnable(Long[] id);
 
 	/**
 	 * 禁用用户
 	 * @param id
 	 * @return
 	 */
-	R updateUserDisable(Long[] id);
+	Result updateUserDisable(Long[] id);
 
 	/**
 	 * 重置用户密码
 	 * @param user
 	 * @return
 	 */
-	R updatePswd(SysUserEntity user);
+	Result updatePswd(SysUserEntity user);
 
 	/**
 	 * 根据用户名查询用户信息

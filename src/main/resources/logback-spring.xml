@@ -2,7 +2,7 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/base.xml" />
     <logger name="org.springframework.web" level="INFO"/>
-    <logger name="org.springboot.sample" level="TRACE" />
+    <logger name="org.springboot.sample" level="INFO" />
 
     <!-- 开发环境 -->
     <springProfile name="dev">
@@ -11,11 +11,30 @@
         <logger name="net.esm" level="DEBUG" />
     </springProfile>
 
+
     <!-- 生产环境 -->
     <springProfile name="prd">
-        <logger name="org.springframework.web" level="ERROR"/>
-        <logger name="org.springboot.sample" level="ERROR" />
-        <logger name="net.esm" level="ERROR" />
+        <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径。对应线上的地址-->
+        <property name="LOG_HOME" value="home/app/logs"/>
+    </springProfile>
+
+    <!-- 按照每天生成日志文件 -->
+    <!--普通日志-->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Prudent>true</Prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_HOME}/%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} [%file:%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <springProfile name="prd">
+        <logger name="org.springframework.web" level="INFO"/>
+        <logger name="org.springboot.sample" level="INFO" />
+        <logger name="net.esm" level="INFO" />
     </springProfile>
 
 </configuration>

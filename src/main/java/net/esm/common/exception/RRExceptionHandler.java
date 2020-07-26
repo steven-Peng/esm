@@ -1,6 +1,6 @@
 package net.esm.common.exception;
 
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
@@ -22,11 +22,11 @@ public class RRExceptionHandler {
 	 * 自定义异常
 	 */
 	@ExceptionHandler(RRException.class)
-	public R handleRRException(RRException e){
-		R r = new R();
-		r.put("code", e.getCode());
-		r.put("msg", e.getMessage());
-		return r;
+	public Result handleRRException(RRException e){
+		Result result = new Result();
+		result.put("code", e.getCode());
+		result.put("msg", e.getMessage());
+		return result;
 	}
 
 	/**
@@ -35,9 +35,9 @@ public class RRExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(DuplicateKeyException.class)
-	public R handleDuplicateKeyException(DuplicateKeyException e){
+	public Result handleDuplicateKeyException(DuplicateKeyException e){
 		logger.error(e.getMessage(), e);
-		return R.error("数据库中已存在该记录");
+		return Result.error("数据库中已存在该记录");
 	}
 
 	/**
@@ -46,9 +46,9 @@ public class RRExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler({UnauthorizedException.class, AuthorizationException.class})
-	public R handleAuthorizationException(AuthorizationException e){
+	public Result handleAuthorizationException(AuthorizationException e){
 		logger.error(e.getMessage(), e);
-		return R.error("没有权限，请联系管理员授权");
+		return Result.error("没有权限，请联系管理员授权");
 	}
 
 	/**
@@ -57,9 +57,9 @@ public class RRExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(Exception.class)
-	public R handleException(Exception e){
+	public Result handleException(Exception e){
 		logger.error(e.getMessage(), e);
-		return R.error();
+		return Result.error();
 	}
 	
 }

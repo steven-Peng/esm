@@ -1,6 +1,6 @@
 package net.esm.common.constant;
 
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 
 /**
  * rest模块常量
@@ -60,8 +60,8 @@ public class RestApiConstant {
             this.msg = msg;
         }
 
-        public R getResp() {
-            return R.error(code, msg);
+        public Result getResp() {
+            return Result.error(code, msg);
         }
 
     }

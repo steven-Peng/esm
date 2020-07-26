@@ -1,7 +1,7 @@
 package net.esm.modules.sys.service.impl;
 
 import net.esm.common.constant.MsgConstant;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.common.utils.CommonUtils;
 import net.esm.modules.sys.dao.SysOrgMapper;
 import net.esm.modules.sys.dao.SysRoleOrgMapper;
@@ -61,7 +61,7 @@ public class SysOrgServiceImpl implements SysOrgService {
 	 * @return
 	 */
 	@Override
-	public R saveOrg(SysOrgEntity org) {
+	public Result saveOrg(SysOrgEntity org) {
 		int count = sysOrgMapper.save(org);
 		return CommonUtils.msg(count);
 	}
@@ -72,7 +72,7 @@ public class SysOrgServiceImpl implements SysOrgService {
 	 * @return
 	 */
 	@Override
-	public R getOrg(Long orgId) {
+	public Result getOrg(Long orgId) {
 		SysOrgEntity org = sysOrgMapper.getObjectById(orgId);
 		return CommonUtils.msg(org);
 	}
@@ -83,7 +83,7 @@ public class SysOrgServiceImpl implements SysOrgService {
 	 * @return
 	 */
 	@Override
-	public R updateOrg(SysOrgEntity org) {
+	public Result updateOrg(SysOrgEntity org) {
 		int count = sysOrgMapper.update(org);
 		return CommonUtils.msg(count);
 	}
@@ -94,10 +94,10 @@ public class SysOrgServiceImpl implements SysOrgService {
 	 * @return
 	 */
 	@Override
-	public R bactchRemoveOrg(Long[] id) {
+	public Result bactchRemoveOrg(Long[] id) {
 		boolean children = this.hasChildren(id);
 		if(children) {
-			return R.error(MsgConstant.MSG_HAS_CHILD);
+			return Result.error(MsgConstant.MSG_HAS_CHILD);
 		}
 		int count = sysOrgMapper.batchRemove(id);
 		sysRoleOrgMapper.batchRemoveByOrgId(id);

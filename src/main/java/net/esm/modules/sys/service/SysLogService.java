@@ -1,7 +1,7 @@
 package net.esm.modules.sys.service;
 
 import net.esm.common.entity.Page;
-import net.esm.common.entity.R;
+import net.esm.common.entity.Result;
 import net.esm.modules.sys.entity.SysLogEntity;
 
 import java.util.Map;
@@ -24,12 +24,12 @@ public interface SysLogService {
      * @param id
      * @return
      */
-    R batchRemove(Long[] id);
+    Result batchRemove(Long[] id);
 
     /**
      * 清空日志
      * @return
      */
-    R batchRemoveAll();
+    Result batchRemoveAll();
 
 }
