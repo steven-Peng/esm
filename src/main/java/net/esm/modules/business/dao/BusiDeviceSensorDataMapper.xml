@@ -9,10 +9,14 @@
 			`device_number`,
 			`sensor_data`, 
 			`gmt_create`, 
-			`gmt_upload`, 
-			`is_delete`
+			`gmt_upload`
 		FROM
 			busi_device_sensor_data
+		<where>
+			<if test="search != null and search.trim() != ''">
+				AND device_number LIKE concat('%',#{search},'%')
+			</if>
+		</where>
 		ORDER BY
 			id DESC
 	</select>

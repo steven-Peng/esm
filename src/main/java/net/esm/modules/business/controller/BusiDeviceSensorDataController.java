@@ -4,6 +4,7 @@ import net.esm.common.annotation.SysLog;
 import net.esm.common.entity.Page;
 import net.esm.common.entity.Result;
 import net.esm.modules.business.entity.BusiDeviceSensorDataEntity;
+import net.esm.modules.business.pojo.DeviceDataOutput;
 import net.esm.modules.business.service.BusiDeviceSensorDataService;
 import net.esm.modules.sys.controller.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class BusiDeviceSensorDataController extends AbstractController {
 	public Page<BusiDeviceSensorDataEntity> list(@RequestBody Map<String, Object> params) {
 		return busiDeviceSensorDataService.listBusiDeviceSensorData(params);
 	}
-		
+
 	/**
 	 * 新增
 	 * @param busiDeviceSensorData

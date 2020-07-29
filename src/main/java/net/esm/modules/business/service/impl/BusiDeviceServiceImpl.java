@@ -103,7 +103,7 @@ public class BusiDeviceServiceImpl implements BusiDeviceService {
 		BusiDeviceSensorDataEntity sensorDataEntity = new BusiDeviceSensorDataEntity();
 		sensorDataEntity.setDeviceNumber(busiDevice.getNumber());
 		sensorDataEntity.setGmtCreate(new Date());
-		sensorDataEntity.setGmtUpload(DateUtils.parse(params[4], "yyyy-MM-dd-HH-mm-ss"));
+		sensorDataEntity.setGmtUpload(DateUtils.parse(params[4], "yyyy-MM-dd HH-mm-ss"));
 		sensorDataEntity.setSensorData(params[3]);
 		sensorDataEntity.setIsDelete(Constant.DELETE_NO);
 		busiDeviceSensorDataMapper.save(sensorDataEntity);

@@ -1,0 +1,35 @@
+@layout("../../system/layout.html", {title: "设备传感器上传的数据"}){
+<table class="form" id="form">
+    <tr>
+        <td class="formTitle">设备id<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="设备id" v-model="busiDeviceSensorData.deviceId" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">设备传感器上传的数据<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="设备传感器上传的数据" v-model="busiDeviceSensorData.sensorData" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">入库时间<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="入库时间" v-model="busiDeviceSensorData.gmtCreate" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">上传时间<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="上传时间" v-model="busiDeviceSensorData.gmtUpload" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">是否删除 0:否，1:是<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="是否删除 0:否，1:是" v-model="busiDeviceSensorData.isDelete" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+</table>
+<script src="${ctxPath}/static/js/business/sensor/add.js"></script>
+@}

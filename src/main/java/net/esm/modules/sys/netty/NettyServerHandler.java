@@ -37,7 +37,6 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 	 */
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		LOGGER.info("服务器收到消息: {}", msg.toString());
 		ctx.writeAndFlush("ok");
 
 		try {

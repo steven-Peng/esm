@@ -23,10 +23,10 @@ function getGrid() {
 		},
 		columns: [
 			{checkbox: true},
-            {field : "number", title : "设备编码", width : "200px", align : "center"},
-            {field : "name", title : "设备名称", width : "200px",align : "center"},
+            {field : "number", title : "设备编码", width : "150px", align : "center"},
+            {field : "name", title : "设备名称", width : "180px",align : "center"},
             {field : "sensorData", title : "传感器数据", width : "500px",align : "center"},
-    		{field : "gmtUpload", title : "最新时间", align : "center", width : "200px"},
+    		{field : "gmtUpload", title : "最新上传时间", align : "center", width : "200px"},
             {field : "gmtCreate", title : "创建时间", align : "center", width : "200px"},
             //{field : "isDelete", title : "是否删除 0:否，1:是", width : "100px"},
             {
@@ -65,6 +65,7 @@ function getGrid() {
                     if (hasPermission('business:device:remove')) {
                         _html += '<a href="javascript:;" onclick="vm.remove(false,\''+row.id+'\')" title="删除"><i class="fa fa-trash-o"></i></a>';
                     }
+                    _html += '<a href="javascript:;" onclick="vm.sensorData(\'' + row.number + '\')" title="查看传感器历史数据"><i class="fa fa-search"></i></a>';
                     return _html;
                 }
             }
@@ -127,6 +128,9 @@ var vm = new Vue({
                     vm.load();
                 }
             });
+        },
+        sensorData: function(number) {
+            window.location.href = '/business/sensor/list.html?' + number;
         }
 	}
 })

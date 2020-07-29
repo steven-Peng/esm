@@ -40,5 +40,5 @@ spring:
 global:
   upload-location: /home/app/upload/ #文件上传目录
   upload-mapping:  /home/app/upload/
-  kaptcha-enable: true #是否开启验证码，true为开启，false为关闭
+  kaptcha-enable: false #是否开启验证码，true为开启，false为关闭
   netty-ip: 47.108.132.5
