@@ -51,8 +51,11 @@
 		WHERE
 			id = #{id}
 	</select>
-	
-	<update id="update">
+    <select id="listLatestSensorData" resultType="net.esm.modules.business.entity.BusiDeviceSensorDataEntity">
+		select * from busi_device_sensor_data where gmt_upload > DATE_SUB(NOW(),INTERVAL #{minutes} MINUTE) ORDER BY gmt_upload DESC;
+	</select>
+
+    <update id="update">
 		UPDATE busi_device_sensor_data
 	 	<set>
 			<if test="deviceNumber != null">`device_number` = #{deviceNumber}, </if>

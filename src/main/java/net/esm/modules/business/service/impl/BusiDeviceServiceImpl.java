@@ -12,11 +12,16 @@ import net.esm.modules.business.entity.BusiDeviceSensorDataEntity;
 import net.esm.modules.business.enums.Constant;
 import net.esm.modules.business.pojo.DeviceDataOutput;
 import net.esm.modules.business.service.BusiDeviceService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 设备表
@@ -52,9 +57,33 @@ public class BusiDeviceServiceImpl implements BusiDeviceService {
 	@Override
 	public Page<DeviceDataOutput> listDeviceData(Map<String, Object> params) {
 		Query query = new Query(params);
-		Page<DeviceDataOutput> page = new Page<>(query);
-		busiDeviceMapper.listForPageData(page, query);
-		return page;
+		Page<BusiDeviceEntity> page = new Page<>(query);
+		busiDeviceMapper.listForPage(page, query);
+		List<BusiDeviceSensorDataEntity> deviceSensorDataEntityList = busiDeviceSensorDataMapper.listLatestSensorData(Constant.LATEST_MINUTES);
+		Map<String, List<BusiDeviceSensorDataEntity>> sensorMap = deviceSensorDataEntityList.stream().
+				collect(Collectors.groupingBy(t -> t.getDeviceNumber()));
+
+		Page<DeviceDataOutput> deviceDataOutputPage = new Page<>(page.getPageNo(), page.getPageSize());
+		List<DeviceDataOutput> deviceDataOutputList = new ArrayList<>();
+		for (BusiDeviceEntity deviceEntity : page.getRows()){
+			DeviceDataOutput output = new DeviceDataOutput();
+			BeanUtils.copyProperties(deviceEntity, output);
+			deviceDataOutputList.add(output);
+
+			List<BusiDeviceSensorDataEntity> sensorDataEntityListOfNumber = sensorMap.get(deviceEntity.getNumber());
+			if (CollectionUtils.isEmpty(sensorDataEntityListOfNumber)){
+				continue;
+			}
+
+			BusiDeviceSensorDataEntity sensorDataEntity = sensorDataEntityListOfNumber.get(0);
+			output.setGmtUpload(sensorDataEntity.getGmtUpload());
+			output.setSensorData(sensorDataEntity.getSensorData());
+		}
+		deviceDataOutputPage.setRows(deviceDataOutputList);
+		deviceDataOutputPage.setTotal(page.getTotal());
+		deviceDataOutputPage.setTotalPages(page.getTotalPages());
+
+		return deviceDataOutputPage;
 	}
 
     /**

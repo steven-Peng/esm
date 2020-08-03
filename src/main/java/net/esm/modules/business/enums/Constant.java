@@ -12,4 +12,7 @@ public class Constant {
     // 禁用，正常
     public static Integer ENABLE_FORBIDDEN = 0;
     public static Integer ENABLE_NORMAL = 1;
+
+    // 里最近 分钟数 的数据
+    public static Integer LATEST_MINUTES = 2;
 }

@@ -25,7 +25,7 @@
 			</if>
 		</where>
 		ORDER BY
-			id DESC
+		id DESC
 	</select>
 	
 	<insert id="save" useGeneratedKeys="true" keyProperty="id">
@@ -75,40 +75,6 @@
 			busi_device
 		WHERE
 			is_delete = 0 and number = #{number}
-	</select>
-
-	<select id="listForPageData" resultType="net.esm.modules.business.pojo.DeviceDataOutput">
-		SELECT
-			device.`id`,
-			device.`number`,
-			device.`name`,
-			device.`enable`,
-			device.`status`,
-			device.`gmt_create` gmtCreate,
-			device.`gmt_modified` gmtModified,
-			sd.sensor_data sensorData,
-			sd.gmt_upload gmtUpload
-		FROM
-			busi_device device
-		LEFT JOIN
-			(
-				SELECT bdsd.id,bdsd.device_number,bdsd.sensor_data,bdsd.gmt_upload
-				FROM busi_device_sensor_data bdsd WHERE id IN(
-					SELECT substring_index(GROUP_CONCAT(id ORDER BY gmt_upload DESC),',',1) id
-					FROM busi_device_sensor_data WHERE is_delete = 0
-					GROUP BY `device_number`)
-			) sd
-		ON  sd.device_number = device.number and device.is_delete = 0
-		<where>
-			<if test="search != null and search.trim() != ''">
-				AND (
-				number LIKE concat('%',#{search},'%')
-				OR name LIKE concat('%',#{search},'%')
-				)
-			</if>
-		</where>
-		ORDER BY
-		id DESC
 	</select>
 
 	<update id="update">
