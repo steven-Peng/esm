@@ -31,6 +31,7 @@ public class EsmApplication extends SpringBootServletInitializer {
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
         LOGGER.info("The Dp application has been started successfully!");
+        //测试提交
 
         // 启动Netty Server，监听端口
         NettyConfig.start(new InetSocketAddress("0.0.0.0", 8090));
