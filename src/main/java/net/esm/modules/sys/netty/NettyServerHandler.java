@@ -37,9 +37,10 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 	 */
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		ctx.writeAndFlush("ok");
+		ctx.writeAndFlush("ok/r/n");
 
 		try {
+			//TODO:增加时间校正功能
 			String[] params = StringUtils.split(msg.toString(), ":");
 			busiDeviceService.saveDeviceInfo(params);
 		}catch (Exception e){

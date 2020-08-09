@@ -1,0 +1,29 @@
+@layout("../../system/layout.html", {title: "预警日志表"}){
+<table class="form" id="form">
+    <tr>
+        <td class="formTitle">设备编码<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="设备编码" v-model="alarmLog.terminalNumber" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">传感器编号<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="传感器编号" v-model="alarmLog.sensorNumber" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">上报值<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="上报值" v-model="alarmLog.value" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">上报时间<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="上报时间" v-model="alarmLog.alarmTime" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+</table>
+<script src="${ctxPath}/static/js/business/alarmLog/add.js"></script>
+@}
