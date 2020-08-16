@@ -46,5 +46,7 @@ public interface BusiDeviceSensorDataService {
      * @return
      */
 	Result batchRemove(Long[] id);
+
+	Result selectHistoryData(String deviceNumber,String start,String end);
 	
 }

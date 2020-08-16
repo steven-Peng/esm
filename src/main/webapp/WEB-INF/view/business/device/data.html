@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script type="text/javascript" src="https://lib.baomitu.com/echarts/4.7.0/echarts.js"></script>
+    <script src="${ctxPath}/static/libs/jquery.min.js"></script>
+    <script src="${ctxPath}/static/js/common.js"></script>
+    <script src="${ctxPath}/static/js/form.js"></script>
+    <script src="${ctxPath}/static/plugins/laydate/laydate.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+
+<input type="text" class="demo-input" placeholder="请选择日期" id="date">
+<input type="button" onclick="">
+<div id="myChart" style="width: 1000px;height:400px; margin-top:50px;"></div>
+<script src="${ctxPath}/static/js/business/device/data.js">
+</script>
+<script>
+  laydate.render({
+  elem: '#date'
+  ,type: 'datetime'
+  ,range: true
+});
+</script>
+</body>
+</html>

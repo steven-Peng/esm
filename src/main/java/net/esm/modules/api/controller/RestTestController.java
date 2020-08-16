@@ -4,9 +4,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import net.esm.common.annotation.RestAnon;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import net.esm.common.entity.Result;
+import net.esm.modules.business.pojo.SearchData;
+import net.esm.modules.business.service.BusiDeviceSensorDataService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 测试接口
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rest")
 public class RestTestController {
 
+    @Autowired
+    private BusiDeviceSensorDataService busiDeviceSensorDataService;
     /**
      * 验证拦截
      * @return
@@ -38,5 +42,14 @@ public class RestTestController {
     public String testAnon() {
         return "rest anon";
     }
+
+    @ApiOperation(value = "data")
+    @ApiImplicitParam(name = "testData", value = "data")
+    @RequestMapping(value = "/testData", method = RequestMethod.POST)
+    @RestAnon
+    public Result testData(@RequestBody SearchData searchData) {
+        return busiDeviceSensorDataService.selectHistoryData(searchData.getDeviceNumber(),searchData.getStart(),searchData.getEnd());
+    }
+
 
 }

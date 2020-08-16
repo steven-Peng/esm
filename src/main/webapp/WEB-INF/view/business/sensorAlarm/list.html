@@ -1,4 +1,4 @@
-@layout("../../system/layout.html", {title: "预警日志表"}){
+@layout("../../system/layout.html", {title: "预警表"}){
 <div class="row">
     <div class="col-md-4 form-inline pull-left">
         <div class="form-group">
@@ -11,9 +11,9 @@
     <div class="col-md-8">
         <div class="btn-toolbar pull-right">
             <div class="btn-group">
-                <a v-if="hasPermission('business:alarmLog:list')" class="btn btn-default" onclick="reload();"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
-               <!-- <a v-if="hasPermission('business:alarmLog:save')" class="btn btn-default" \@click="save"><i class="fa fa-plus"></i>&nbsp;新增</a>
-                <a v-if="hasPermission('business:alarmLog:remove')" class="btn btn-default" \@click="remove(true)"><i class="fa fa-trash-o"></i>&nbsp;删除</a>-->
+                <a v-if="hasPermission('business:sensorAlarm:list')" class="btn btn-default" onclick="reload();"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+                <a v-if="hasPermission('business:sensorAlarm:save')" class="btn btn-default" \@click="save"><i class="fa fa-plus"></i>&nbsp;新增</a>
+                <a v-if="hasPermission('business:sensorAlarm:remove')" class="btn btn-default" \@click="remove(true)"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
             </div>
         </div>
     </div>
@@ -21,5 +21,5 @@
 <div class="row">
     <table id="dataGrid"></table>
 </div>
-<script src="${ctxPath}/static/js/business/alarmLog/list.js"></script>
+<script src="${ctxPath}/static/js/business/sensorAlarm/list.js"></script>
 @}

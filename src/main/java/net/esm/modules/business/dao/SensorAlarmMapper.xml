@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="net.esm.modules.business.dao.AlarmLogMapper">
+<mapper namespace="net.esm.modules.business.dao.SensorAlarmMapper">
 	
-	<select id="listForPage" resultType="net.esm.modules.business.entity.AlarmLogEntity">
+	<select id="listForPage" resultType="net.esm.modules.business.entity.SensorAlarmEntity">
 		SELECT
 			`id`, 
 			`terminal_number`, 
 			`sensor_number`, 
-			`value`, 
-			`alarm_time`
+			`low_value`, 
+			`high_value`
 		FROM
-			alarm_log
+			sensor_alarm
 		ORDER BY
 			id DESC
 	</select>
 	
 	<insert id="save">
-		INSERT INTO alarm_log (
+		INSERT INTO sensor_alarm (
 			`terminal_number`, 
 			`sensor_number`, 
-			`value`, 
-			`alarm_time`
+			`low_value`, 
+			`high_value`
 		)
 		VALUES (
 			#{terminalNumber}, 
 			#{sensorNumber}, 
-			#{value}, 
-			#{alarmTime}
+			#{lowValue}, 
+			#{highValue}
 		)
 	</insert>
 	
-	<select id="getObjectById" resultType="net.esm.modules.business.entity.AlarmLogEntity">
+	<select id="getObjectById" resultType="net.esm.modules.business.entity.SensorAlarmEntity">
 		SELECT
 			`id`, 
 			`terminal_number`, 
 			`sensor_number`, 
-			`value`, 
-			`alarm_time`
+			`low_value`, 
+			`high_value`
 		FROM
-			alarm_log
+			sensor_alarm
 		WHERE
 			id = #{id}
 	</select>
 	
 	<update id="update">
-		UPDATE alarm_log
+		UPDATE sensor_alarm
 	 	<set>
 			<if test="terminalNumber != null">`terminal_number` = #{terminalNumber}, </if>
 			<if test="sensorNumber != null">`sensor_number` = #{sensorNumber}, </if>
-			<if test="value != null">`value` = #{value}, </if>
-			<if test="alarmTime != null">`alarm_time` = #{alarmTime}</if>
+			<if test="lowValue != null">`low_value` = #{lowValue}, </if>
+			<if test="highValue != null">`high_value` = #{highValue}</if>
 		</set>
 		WHERE
 			id = #{id}
@@ -59,7 +59,7 @@
 	<delete id="batchRemove">
 		DELETE
 		FROM
-			alarm_log
+			sensor_alarm
 		WHERE
 			id IN
 		<foreach item="id" collection="array" open="(" separator="," close=")">

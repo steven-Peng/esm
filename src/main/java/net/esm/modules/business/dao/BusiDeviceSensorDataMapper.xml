@@ -78,5 +78,17 @@
 			#{id}
 		</foreach>
 	</delete>
+	
+	<select id="listbyTime" resultType="net.esm.modules.business.entity.BusiDeviceSensorDataEntity">
+		SELECT
+		sensor_data,
+		gmt_upload
+		FROM
+		busi_device_sensor_data a
+		WHERE
+		a.device_number = #{deviceNumber}
+		AND gmt_upload BETWEEN #{start}
+		AND #{end}
+	</select>
 
 </mapper>

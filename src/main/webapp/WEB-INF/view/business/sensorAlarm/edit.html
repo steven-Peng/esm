@@ -1,0 +1,29 @@
+@layout("../../system/layout.html", {title: "预警表"}){
+<table class="form" id="form">
+    <tr>
+        <td class="formTitle">设备编码<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="设备编码" v-model="sensorAlarm.terminalNumber" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">传感器编号<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="传感器编号" v-model="sensorAlarm.sensorNumber" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">下限值<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="下限值" v-model="sensorAlarm.lowValue" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+    <tr>
+        <td class="formTitle">上限值<font face="宋体">*</font></td>
+        <td class="formValue">
+            <input type="text" class="form-control" placeholder="上限值" v-model="sensorAlarm.highValue" isvalid="yes" checkexpession="NotNull">
+        </td>
+    </tr>
+</table>
+<script src="${ctxPath}/static/js/business/sensorAlarm/edit.js"></script>
+@}

@@ -130,7 +130,7 @@ var vm = new Vue({
             });
         },
         sensorData: function(number) {
-            window.location.href = '/business/sensor/list.html?' + number;
+            window.location.href = '/business/device/data.html?' + number;
         }
 	}
 })
