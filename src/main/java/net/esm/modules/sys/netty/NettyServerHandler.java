@@ -2,16 +2,12 @@ package net.esm.modules.sys.netty;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import net.esm.common.support.properties.GlobalProperties;
 import net.esm.common.utils.SpringContextUtils;
-import net.esm.modules.business.entity.BusiDeviceEntity;
-import net.esm.modules.business.entity.BusiDeviceSensorDataEntity;
 import net.esm.modules.business.enums.Constant;
 import net.esm.modules.business.service.BusiDeviceService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 
 /**
@@ -29,6 +25,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 	 */
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
+
 		LOGGER.info("Channel active......");
 	}
 
@@ -43,7 +40,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 			//TODO:增加时间校正功能
 			String[] params = StringUtils.split(msg.toString(), ":");
 			if (params[1].length()==12) {
-				busiDeviceService.saveDeviceInfo(params);
+				busiDeviceService.saveDeviceInfo(params, ctx.channel().remoteAddress().toString());
 			}
 		}catch (Exception e){
 			LOGGER.info(e.getMessage());
@@ -58,13 +55,21 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
 		if (!(cause.getMessage().contains("中止了一个已建立的连接") || cause.getMessage().contains("远程主机强迫关闭了一个现有的连接"))){
 			cause.printStackTrace();
 		}
+		String address = ctx.channel().remoteAddress().toString();
+		updateStatusAndSetLog(address);
 		ctx.close();
 		super.exceptionCaught(ctx, cause);
 	}
 
 	@Override
 	public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-		LOGGER.info("客户端断开了");
+		LOGGER.info("客户端断开了: " + ctx.channel().remoteAddress().toString());
+		String address = ctx.channel().remoteAddress().toString();
+		updateStatusAndSetLog(address);
 		super.handlerRemoved(ctx);
+	}
+
+	private void updateStatusAndSetLog(String address){
+		busiDeviceService.updateStatusAndSetLog(Constant.STATUS_LOST_CONNECTION, address);
 	}
 }

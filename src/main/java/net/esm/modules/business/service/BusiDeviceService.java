@@ -40,7 +40,7 @@ public interface BusiDeviceService {
      * @param busiDevice
      * @return
      */
-    Result saveDeviceInfo(String[] busiDevice);
+    Result saveDeviceInfo(String[] busiDevice, String address);
 
     /**
      * 根据id查询
@@ -62,5 +62,6 @@ public interface BusiDeviceService {
      * @return
      */
 	Result batchRemove(Long[] id);
-	
+
+    void updateStatusAndSetLog(Integer status, String address);
 }

@@ -37,6 +37,11 @@ public class BusiDeviceEntity implements Serializable {
 	 * 状态 0:掉线，1:在线
 	 */
 	private Integer status;
+
+	/**
+	 * 远程IP端口
+	 */
+	private String remoteAddress;
 	
 	/**
 	 * 创建时间
@@ -165,7 +170,15 @@ public class BusiDeviceEntity implements Serializable {
 		return gmtModified;
 	}
 
-    /**
+	public String getRemoteAddress() {
+		return remoteAddress;
+	}
+
+	public void setRemoteAddress(String remoteAddress) {
+		this.remoteAddress = remoteAddress;
+	}
+
+	/**
      * setter for isDelete
      * @param isDelete
      */

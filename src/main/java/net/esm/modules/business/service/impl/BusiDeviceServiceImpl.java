@@ -106,7 +106,7 @@ public class BusiDeviceServiceImpl implements BusiDeviceService {
 	}
 
 	@Override
-	public Result saveDeviceInfo(String[] params) {
+	public Result saveDeviceInfo(String[] params, String address) {
 		// 解析参数，更新数据表
 		// NO:0028-XP-6B11:08:101 * +****.***|102 * +****.***|103 *	+****.***|104 * +****.***|105 * +****.***
 		// |106 * +****.***|107 * +****.***|108 * +****.***:2020-06-07-08-56-30:END
@@ -115,6 +115,7 @@ public class BusiDeviceServiceImpl implements BusiDeviceService {
 		busiDevice.setStatus(Constant.STATUS_IN_CONNECTION);
 		busiDevice.setEnable(Constant.ENABLE_NORMAL);
 		busiDevice.setIsDelete(Constant.DELETE_NO);
+		busiDevice.setRemoteAddress(address);
 
 		// 保存设备
 		BusiDeviceEntity device = busiDeviceMapper.getDeviceByNumber(busiDevice.getNumber());
@@ -125,6 +126,7 @@ public class BusiDeviceServiceImpl implements BusiDeviceService {
 		}else {
 			device.setGmtModified(new Date());
 			device.setStatus(Constant.STATUS_IN_CONNECTION);
+			device.setRemoteAddress(address);
 			busiDeviceMapper.update(device);
 		}
 
@@ -171,6 +173,23 @@ public class BusiDeviceServiceImpl implements BusiDeviceService {
 	public Result batchRemove(Long[] id) {
 		int count = busiDeviceMapper.batchRemove(id);
 		return CommonUtils.msg(id, count);
+	}
+
+	/**
+	 * 更新设备状态 ，记录告警
+	 */
+	@Override
+	public void updateStatusAndSetLog(Integer status, String address) {
+		List<BusiDeviceEntity> deviceList = busiDeviceMapper.getDeviceByAddress(address);
+		if (deviceList.size() == 0){
+			return;
+		} else if (deviceList.size() > 1){// 同IP端口存在多个设备，属于异常，只保存告警
+
+		}else {
+			deviceList.get(0).setStatus(status);
+			busiDeviceMapper.update(deviceList.get(0));
+			// TODO 保存告警日志
+		}
 	}
 
 }

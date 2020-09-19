@@ -34,6 +34,7 @@
 			`name`, 
 			`enable`,
 			`status`,
+			`remote_address`,
 			`gmt_modified`
 		)
 		VALUES (
@@ -41,6 +42,7 @@
 			#{name}, 
 			#{enable},
 			#{status},
+			#{remoteAddress},
 			#{gmtModified}
 		)
 	</insert>
@@ -77,6 +79,23 @@
 			is_delete = 0 and number = #{number}
 	</select>
 
+	<select id="getDeviceByAddress" resultType="net.esm.modules.business.entity.BusiDeviceEntity">
+		SELECT
+		`id`,
+		`number`,
+		`name`,
+		`enable`,
+		`status`,
+		`remote_address`,
+		`gmt_create`,
+		`gmt_modified`,
+		`is_delete`
+		FROM
+			busi_device
+		WHERE
+			is_delete = 0 and remote_address = #{address}
+	</select>
+
 	<update id="update">
 		UPDATE busi_device
 	 	<set>
@@ -84,6 +103,7 @@
 			<if test="name != null">`name` = #{name}, </if>
 			<if test="enable != null">`enable` = #{enable}, </if>
 			<if test="status != null">`status` = #{status}, </if>
+			<if test="remoteAddress != null">`remote_address` = #{remoteAddress}, </if>
 			<if test="gmtCreate != null">`gmt_create` = #{gmtCreate}, </if>
 			<if test="gmtModified != null">`gmt_modified` = #{gmtModified}, </if>
 			<if test="isDelete != null">`is_delete` = #{isDelete}</if>
